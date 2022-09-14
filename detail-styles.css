@@ -1,0 +1,64 @@
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  /*- Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%)
+- Very Dark Blue (Light Mode Text): hsl(200, 15%, 8%)
+- Dark Gray (Light Mode Input): hsl(0, 0%, 52%)
+- Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
+- White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%) */
+  --very-dark-blue: hsl(207, 26%, 17%); /* (Dark Mode Background) */
+  --white: hsl(0, 0%, 100%); /*(Dark Mode Text & Light Mode Elements)*/
+  --dark-blue: hsl(209, 23%, 22%); /* (Dark Mode Elements)*/
+}
+body {
+  min-height: 100vh;
+  background-color: var(--very-dark-blue);
+  color: var(--white);
+  font-family: "Nunito Sans", sans-serif;
+  padding: 0 60px;
+}
+
+/* Detail page css */
+
+.container-next {
+  height: calc(100vh - 55px);
+  gap: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.flag-image {
+  height: 450px;
+  object-fit: cover;
+  border: 50px solid gray;
+}
+.detail-country {
+  height: 450px;
+  padding: 40px;
+}
+
+h2.country {
+  margin: 40px auto;
+}
+.half {
+  flex-basis: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.details-half {
+  display: flex;
+  justify-content: space-between;
+}
+
+.one > ul > li,
+.two > ul > li {
+  list-style-type: none;
+}
