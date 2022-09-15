@@ -3,48 +3,6 @@ console.log("Connected");
 
 const containerElement = document.querySelector(".container");
 
-function hideNow() {
-  const farray = document.querySelectorAll(".country-name");
-  for (let el of farray) {
-    el.style.display = "none";
-  }
-
-  const html = `<div class="new-container">
-          <div class="button">back</div>
-
-          <div class="container-next">
-            <img
-              src="https://flagcdn.com/fi.svg"
-              alt="flag"
-              class="flag-image half"
-            />
-            <div class="detail-country half">
-              <h2 class="country">Country</h2>
-              <div class="details-half">
-                <div class="one">
-                  <ul>
-                    <li>Native Name :&nbsp;<span></span></li>
-                    <li>Population :&nbsp;<span></span></li>
-                    <li>Region :&nbsp;<span></span></li>
-                    <li>Sub Region :&nbsp;<span></span></li>
-                    <li>Capital :&nbsp;<span></span></li>
-                  </ul>
-                </div>
-                <div class="two">
-                  <ul>
-                    <li>Top Level Domain :&nbsp;<span></span></li>
-                    <li>Currencies :&nbsp;<span></span></li>
-                    <li>Languages :&nbsp;<span></span></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>`;
-
-  containerElement.insertAdjacentHTML("beforeend", html);
-}
-
 const renderCountry = function (country, i) {
   const html = `
   <div class="country-name code${i}">
@@ -67,15 +25,34 @@ const renderCountry = function (country, i) {
 
   const countryElement = document.querySelector(`.code${i}`);
 
-  countryElement.addEventListener("click", hideNow);
+  countryElement.addEventListener("click", function () {
+    // open new html page of details
+    window.open("./detail.html", "_self");
+    // save the current selected country to the local storage
+    localStorage.setItem("current", JSON.stringify(country));
+  });
 };
 
-fetch("https://restcountries.com/v3.1/all")
-  .then((response) => response.json())
-  .then((response) => response)
-  .then((res) => {
-    res.forEach((element, i) => {
-      renderCountry(element, i);
+// if data of all country present in local storage use from there else
+// fetch and store to local storage
+if (localStorage.getItem("all") === null) {
+  fetch("https://restcountries.com/v3.1/all")
+    .then((response) => response.json())
+    .then((response) => response)
+    .then((res) => {
+      console.log("------fetching from api------");
+      res.forEach((element, i) => {
+        renderCountry(element, i);
+      });
+      console.log(res);
+      localStorage.setItem("all", JSON.stringify(res));
     });
-    console.log(res);
+} else {
+  const res = JSON.parse(localStorage.getItem("all"));
+  // reading from local storage
+  console.log("------reading from local storage------");
+  console.log(res);
+  res.forEach((element, i) => {
+    renderCountry(element, i);
   });
+}

@@ -1,0 +1,138 @@
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  /*- Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%)
+- Very Dark Blue (Light Mode Text): hsl(200, 15%, 8%)
+- Dark Gray (Light Mode Input): hsl(0, 0%, 52%)
+- Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
+- White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%) */
+  --very-dark-blue: hsl(207, 26%, 17%); /* (Dark Mode Background) */
+  --white: hsl(0, 0%, 100%); /*(Dark Mode Text & Light Mode Elements)*/
+  --dark-blue: hsl(209, 23%, 22%); /* (Dark Mode Elements)*/
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--very-dark-blue);
+  color: var(--white);
+  font-family: "Nunito Sans", sans-serif;
+}
+
+nav {
+  background-color: var(--dark-blue);
+  padding: 10px 60px;
+  box-shadow: 0 0 5px black;
+}
+
+/* Detail page css */
+.new-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 60px;
+}
+.container-next {
+  height: calc(100vh - 55px);
+  gap: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.flag-image {
+  height: 450px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.detail-country {
+  height: 450px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+h2.country {
+  margin: 0px 10px 30px 10px;
+}
+.half {
+  flex-basis: 300px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.details-half {
+  display: flex;
+  justify-content: space-between;
+}
+
+.one > ul > li,
+.two > ul > li {
+  list-style-type: none;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.one > ul > li > span,
+.two > ul > li > span {
+  list-style-type: none;
+  font-weight: 200;
+}
+
+.one,
+.two {
+  flex-basis: 100%;
+}
+
+.button {
+  background-color: var(--dark-blue);
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  display: flex;
+  width: 120px;
+  margin-top: 20px;
+  height: 40px;
+  align-items: center;
+}
+.button img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.br-container {
+  margin: 0px 10px 30px 10px;
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+}
+
+.border-container {
+  margin: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.border-container > span {
+  padding: 3px auto;
+  margin-bottom: 20px;
+}
+.borders {
+  width: max-content;
+  background-color: var(--dark-blue);
+  padding: 3px 20px;
+  margin-bottom: 20px;
+  margin: 0 5px;
+  cursor: pointer;
+}
