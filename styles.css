@@ -14,6 +14,7 @@
   --very-dark-blue: hsl(207, 26%, 17%); /* (Dark Mode Background) */
   --white: hsl(0, 0%, 100%); /*(Dark Mode Text & Light Mode Elements)*/
   --dark-blue: hsl(209, 23%, 22%); /* (Dark Mode Elements)*/
+  --dark-gray: hsl(0, 0%, 52%); /*(Light Mode Input)*/
 }
 body {
   min-height: 100vh;
@@ -21,11 +22,22 @@ body {
   color: var(--white);
   font-family: "Nunito Sans", sans-serif;
   /* padding: 0 60px; */
+  font-size: 14px;
+}
+header {
+  width: 100%;
 }
 nav {
   background-color: var(--dark-blue);
   padding: 10px 60px;
   box-shadow: 0 0 5px black;
+  display: flex;
+  justify-content: space-between;
+}
+nav > img {
+  width: 30px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
 .nbar {
@@ -34,6 +46,8 @@ nav {
   justify-content: space-between;
   padding: 0 60px;
   margin: 20px 0;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .searchbox {
@@ -44,7 +58,8 @@ nav {
 }
 .searchbox img {
   object-fit: contain;
-  width: 30px;
+  width: 15px;
+  margin-left: 5px;
 }
 
 .searchbox input {
@@ -64,7 +79,8 @@ select {
   color: var(--white);
   border: 0;
   outline: 0;
-  padding: 10px;
+  padding: 5px;
+  height: 40px;
 }
 
 .container {
@@ -72,14 +88,16 @@ select {
   flex-wrap: wrap;
   gap: 60px;
   padding: 20px 60px;
+  justify-content: space-between;
 }
 .country-name {
   height: 350px;
-  flex-basis: 240px;
-  flex-grow: 1;
+  flex-basis: 300px;
+  flex-grow: 0;
   flex-shrink: 1;
   background-color: var(--dark-blue);
   transition: all 0.4s;
+  margin: 0 auto;
 }
 .flag {
   width: 100%;

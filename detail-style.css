@@ -46,7 +46,7 @@ nav {
 }
 
 .flag-image {
-  height: 450px;
+  height: auto;
   width: 100%;
   object-fit: cover;
 }
@@ -103,7 +103,13 @@ h2.country {
   margin-top: 20px;
   height: 40px;
   align-items: center;
+  box-shadow: 0 0 4px black;
 }
+
+.button:hover {
+  transform: scale(1.1);
+}
+
 .button img {
   width: 20px;
   margin-right: 10px;

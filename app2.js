@@ -12,6 +12,7 @@ const currencies = document.querySelector(".two > ul li:nth-of-type(2) span");
 const languages = document.querySelector(".two > ul li:nth-of-type(3) span");
 
 const current = JSON.parse(localStorage.getItem("current"));
+// if (localStorage.getItem("br") !== null)
 
 const backbtn = document.querySelector(".button");
 
@@ -57,9 +58,6 @@ backbtn.addEventListener("click", function () {
 const border = current.borders;
 console.log(border);
 
-for (const br of border) {
-}
-
 async function fetchbycca3(cca3) {
   const obj = fetch(`https://restcountries.com/v3.1/alpha/${cca3}`)
     .then((resolve) => resolve.json())
@@ -68,36 +66,24 @@ async function fetchbycca3(cca3) {
       return obj;
     })
     .then((res) => {
-      // save the current selected country to the local storage
-      localStorage.setItem("current", JSON.stringify(res));
-      return res.name.common;
+      return res;
     })
     .catch((err) => console.log(err));
 
   return obj;
 }
 
-// for (const br of border) {
-//   fetchbycca3(br)
-//     .then((res) => {
-//       html = `
-//     <div class="borders">${res}</div> </div>
-//     `;
-//       borderElement.insertAdjacentHTML("beforeend", html);
-//     })
-
-//     .catch((er) => console.log(er));
-// }
-
 border.forEach((br, i) => {
   fetchbycca3(br)
     .then((res) => {
       html = `
-    <div class="borders ${"br" + i}">${res}</div> 
+    <div class="borders ${"br" + i}">${res.name.common}</div>
     `;
       borderElement.insertAdjacentHTML("beforeend", html);
       document.querySelector(`.br${i}`).addEventListener("click", function () {
         // open new html page of details
+        localStorage.removeItem("current");
+        localStorage.setItem("current", JSON.stringify(res));
         window.open("./detail.html", "_self");
       });
     })

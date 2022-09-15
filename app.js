@@ -2,13 +2,15 @@
 console.log("Connected");
 
 const containerElement = document.querySelector(".container");
+const region = document.querySelector("#region");
+const serach = document.querySelector("#search");
 
 const renderCountry = function (country, i) {
   const html = `
   <div class="country-name code${i}">
   <img src="${country.flags.svg}" alt="flag" class="flag" />
   <div class="detail">
-    <h2>${country.name.official}</h2>
+    <h2>${country.name.common}</h2>
     <ul>
       <li>Population : &nbsp;<span>${country.population.toLocaleString(
         "en-US"
@@ -56,3 +58,74 @@ if (localStorage.getItem("all") === null) {
     renderCountry(element, i);
   });
 }
+
+region.addEventListener("change", function (e) {
+  const selRegion = e.target.value;
+  //https://restcountries.com/v3.1/region/europe
+  fetch(`https://restcountries.com/v3.1/region/${selRegion}`)
+    .then((response) => response.json())
+    .then((response) => response)
+    .then((res) => {
+      console.log("------fetching from api------");
+
+      // emtying container element
+      containerElement.innerHTML = "";
+
+      res.forEach((element, i) => {
+        // clear container
+        renderCountry(element, i);
+        console.log(element.name.common);
+      });
+      console.log(res);
+      // localStorage.setItem("all", JSON.stringify(res));
+    });
+});
+
+serach.addEventListener("search", function (e) {
+  console.log("Serched");
+  const serach = e.target.value;
+  console.log("se=>" + serach);
+  //https://restcountries.com/v3.1/name/peru
+  if (serach !== "") {
+    fetch(`https://restcountries.com/v3.1/name/${serach}`)
+      .then((response) => response.json())
+      .then((response) => response)
+      .then((res) => {
+        console.log("------fetching from api------");
+
+        // emtying container element
+        containerElement.innerHTML = "";
+
+        res.forEach((element, i) => {
+          // clear container
+          renderCountry(element, i);
+          console.log(element.name.common);
+        });
+        console.log(res);
+        // localStorage.setItem("all", JSON.stringify(res));
+      });
+  } else {
+    containerElement.innerHTML = "";
+    if (localStorage.getItem("all") === null) {
+      fetch("https://restcountries.com/v3.1/all")
+        .then((response) => response.json())
+        .then((response) => response)
+        .then((res) => {
+          console.log("------fetching from api------");
+          res.forEach((element, i) => {
+            renderCountry(element, i);
+          });
+          console.log(res);
+          localStorage.setItem("all", JSON.stringify(res));
+        });
+    } else {
+      const res = JSON.parse(localStorage.getItem("all"));
+      // reading from local storage
+      console.log("------reading from local storage------");
+      console.log(res);
+      res.forEach((element, i) => {
+        renderCountry(element, i);
+      });
+    }
+  }
+});
