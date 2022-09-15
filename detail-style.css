@@ -169,3 +169,21 @@ h2.country {
 .dark-icon {
   content: url("./design/sunny-outline.svg");
 }
+
+@media (max-width: 600px) {
+  nav {
+    padding: 10px 30px;
+  }
+  .nbar {
+    padding: 10px 30px;
+  }
+  .new-container {
+    padding: 10px 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .details-half {
+    flex-wrap: wrap;
+  }
+}
