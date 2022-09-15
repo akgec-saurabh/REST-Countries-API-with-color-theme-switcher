@@ -5,6 +5,23 @@ const containerElement = document.querySelector(".container");
 const region = document.querySelector("#region");
 const serach = document.querySelector("#search");
 
+//! Light Mode
+const light = document.querySelector(".dark-mode");
+const lightIcon = document.querySelector("#light");
+
+if (localStorage.getItem("dark") !== null) {
+  document.body.classList.toggle("darker");
+  lightIcon.classList.toggle("dark-icon");
+}
+
+light.addEventListener("click", function () {
+  document.body.classList.toggle("darker");
+  lightIcon.classList.toggle("dark-icon");
+  if (localStorage.getItem("dark") === null)
+    localStorage.setItem("dark", "yes");
+  else localStorage.removeItem("dark");
+});
+
 const renderCountry = function (country, i) {
   const html = `
   <div class="country-name code${i}">

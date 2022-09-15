@@ -6,22 +6,26 @@
   box-sizing: border-box;
 }
 :root {
-  /*- Very Dark Blue (Dark Mode Background): hsl(207, 26%, 17%)
-- Very Dark Blue (Light Mode Text): hsl(200, 15%, 8%)
-- Dark Gray (Light Mode Input): hsl(0, 0%, 52%)
-- Very Light Gray (Light Mode Background): hsl(0, 0%, 98%)
-- White (Dark Mode Text & Light Mode Elements): hsl(0, 0%, 100%) */
-  --very-dark-blue: hsl(207, 26%, 17%); /* (Dark Mode Background) */
-  --white: hsl(0, 0%, 100%); /*(Dark Mode Text & Light Mode Elements)*/
-  --dark-blue: hsl(209, 23%, 22%); /* (Dark Mode Elements)*/
-  --dark-gray: hsl(0, 0%, 52%); /*(Light Mode Input)*/
+  --input: hsl(0, 0%, 52%);
+  --background: hsl(0, 0%, 98%);
+  --white: hsl(0, 0%, 100%);
+  --text: hsl(200, 15%, 8%);
+  --black: #000;
+  --shadow: #bebebe;
+}
+.darker {
+  --input: hsl(0, 0%, 52%);
+  --background: hsl(207, 26%, 17%);
+  --white: #25333f;
+  --text: #fff;
+  --black: #000;
+  --shadow: #1b252f;
 }
 body {
   min-height: 100vh;
-  background-color: var(--very-dark-blue);
-  color: var(--white);
+  background-color: var(--background);
+  color: var(--text);
   font-family: "Nunito Sans", sans-serif;
-  /* padding: 0 60px; */
   font-size: 14px;
 }
 header {
@@ -30,14 +34,24 @@ header {
 nav {
   background-color: var(--dark-blue);
   padding: 10px 60px;
-  box-shadow: 0 0 5px black;
+  box-shadow: 0 0 5px var(--shadow);
   display: flex;
   justify-content: space-between;
 }
-nav > img {
-  width: 30px;
-  margin-right: 5px;
+
+h1 {
+  font-size: 20px;
+}
+.dark-mode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
   cursor: pointer;
+}
+.dark-mode > img {
+  width: 15px;
+  margin-right: 10px;
 }
 
 .nbar {
@@ -55,6 +69,7 @@ nav > img {
   background-color: var(--dark-blue);
   height: 40px;
   padding: 5px;
+  box-shadow: 0 0 5px var(--shadow);
 }
 .searchbox img {
   object-fit: contain;
@@ -67,20 +82,21 @@ nav > img {
   outline: 0;
   border: 0;
   text-align: center;
-  color: var(--white);
+  color: var(--input);
 }
 .searchbox input::placeholder {
   text-align: center;
-  color: var(--white);
+  color: var(--input);
 }
 
 select {
   background-color: var(--dark-blue);
-  color: var(--white);
+  color: var(--input);
   border: 0;
   outline: 0;
   padding: 5px;
   height: 40px;
+  box-shadow: 0 0 5px var(--shadow);
 }
 
 .container {
@@ -98,6 +114,7 @@ select {
   background-color: var(--dark-blue);
   transition: all 0.4s;
   margin: 0 auto;
+  box-shadow: 20px 20px 60px var(--shadow), -20px -20px 60px var(--white);
 }
 .flag {
   width: 100%;
@@ -129,4 +146,23 @@ li > span {
   cursor: pointer;
 }
 
-/* navbar */
+/* dark mode */
+.on {
+  animation-name: example;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
+}
+
+@keyframes example {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(90deg);
+  }
+}
+
+.dark-icon {
+  content: url("./design/sunny-outline.svg");
+}

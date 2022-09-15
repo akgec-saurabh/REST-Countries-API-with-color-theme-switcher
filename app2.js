@@ -18,6 +18,23 @@ const backbtn = document.querySelector(".button");
 
 const borderElement = document.querySelector(".border-container");
 
+//! Light Mode
+const light = document.querySelector(".dark-mode");
+const lightIcon = document.querySelector("#light");
+
+if (localStorage.getItem("dark") !== null) {
+  document.body.classList.toggle("darker");
+  lightIcon.classList.toggle("dark-icon");
+}
+
+light.addEventListener("click", function () {
+  document.body.classList.toggle("darker");
+  lightIcon.classList.toggle("dark-icon");
+  if (localStorage.getItem("dark") === null)
+    localStorage.setItem("dark", "yes");
+  else localStorage.removeItem("dark");
+});
+
 function getCurrency(c) {
   let lang;
   for (let elm in c) {
